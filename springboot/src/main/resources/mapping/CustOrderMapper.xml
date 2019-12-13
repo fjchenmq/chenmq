@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmq.mapper.CustOrderMapper">
+
+
+    <resultMap id="CustOrder" type="com.cmq.entity.CustOrder">
+        <result property="orderId" column="order_id"/>
+        <result property="custId" column="cust_id"/>
+        <result property="orderName" column="order_name"/>
+        <result property="orderType" column="order_type"/>
+        <result property="shardingId" column="sharding_Id"/>
+    </resultMap>
+
+
+    <!-- 用于select查询公用抽取的列-->
+    <sql id="allFields">
+        <![CDATA[
+
+                order_id,
+				cust_id,
+				order_Name,
+				order_type,
+				sharding_Id
+
+
+        ]]>
+    </sql>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="getOne" parameterType="java.lang.Long" resultMap="CustOrder">
+        SELECT
+        <include refid="allFields"/>
+        from cust_order
+        where order_id=#{id}
+    </select>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="pageQuery" resultMap="CustOrder">
+        SELECT
+        <include refid="allFields"/>
+        from cust_order
+    </select>
+
+
+    <!-- 添加数据,请核实表主键  -->
+    <insert id="create" parameterType="com.cmq.entity.Cust">
+        INSERT INTO users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                ID,
+            </if>
+
+            <if test="name!=null">
+                name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+
+            <if test="name!=null">
+                #{name},
+            </if>
+        </trim>
+
+    </insert>
+
+
+</mapper>

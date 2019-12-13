@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmq.mapper.CustMapper">
+
+
+    <resultMap id="CustMap" type="com.cmq.entity.Cust">
+        <result property="custId" column="cust_id"/>
+        <result property="custName" column="cust_name"/>
+        <result property="custType" column="cust_type"/>
+        <result property="shardingId" column="sharding_Id"/>
+        <collection property="custOrders" resultMap="CustOrder" />
+
+    </resultMap>
+    <resultMap id="CustOrder" type="com.cmq.entity.CustOrder">
+        <result property="orderId" column="order_id"/>
+        <result property="orderName" column="order_name"/>
+        <result property="orderType" column="order_type"/>
+    </resultMap>
+
+
+    <!-- 用于select查询公用抽取的列-->
+    <sql id="allFields">
+	    <![CDATA[
+
+				a.cust_id,
+				a.cust_Name,
+				a.cust_type,
+				a.sharding_Id
+
+        ]]>
+	</sql>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="getOne" parameterType="java.lang.Long" resultMap="CustMap">
+        SELECT
+        <include refid="allFields"/>
+        from cust a
+        where cust_Id=#{id}
+    </select>
+    <!--根据主键查询一条数据-->
+    <select id="queryCustOrderList" parameterType="java.lang.Long" resultMap="CustMap">
+        SELECT
+        <include refid="allFields"/>,order_id,order_type,order_name
+        from cust a ,cust_order b
+        where  1=1 and a.cust_id =b.cust_id
+        <if test="id!=null">
+           and  cust_Id=#{id}
+        </if>
+    </select>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="pageQuery"  resultMap="CustMap">
+        SELECT
+        <include refid="allFields"/>
+        from cust a
+    </select>
+
+
+
+    <!-- 添加数据,请核实表主键  -->
+    <insert id="create" parameterType="com.cmq.entity.Cust">
+        INSERT INTO cust
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="custId!=null">
+                cust_ID,
+            </if>
+
+            <if test="custName!=null">
+                cust_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="custId!=null">
+                #{custId},
+            </if>
+
+            <if test="custName!=null">
+                #{custName},
+            </if>
+        </trim>
+
+    </insert>
+
+
+</mapper>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lucky</title>
+</head>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="util/HttpUtil.js"></script>
+
+<script>
+
+    function onSync() {
+        //alert($("#syncBtn").val())
+        var url ='http://localhost:8082/springboot/lucky';
+        ajax(url,null,callback);
+    }
+
+    function onSend() {
+        //alert($("#syncBtn").val())
+        var url ='http://localhost:8082/springboot/Topic111/send?message=aaaa';
+        ajax(url);
+    }
+
+
+    function callback(result) {
+        alert(JSON.stringify(result));
+    }
+
+</script>
+
+<body>
+lucky lucky..........
+<input type="button" id="syncBtn" onclick="onSync()" value="同步">
+<input type="button" id="sendBtn" onclick="onSend()" value="发送消息">
+</body>
+</html>

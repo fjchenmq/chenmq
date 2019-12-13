@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lucky</title>
+</head>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="util/HttpUtil.js?v="+Math.random()></script>
+<script>
+
+    function onSync() {
+        //alert($("#syncBtn").val())
+        var url ='http://my:9082/springboot/data.do';
+         post(url,null,callback);
+    }
+
+
+
+    function callback(result) {
+        alert(JSON.stringify(result));
+    }
+
+</script>
+
+<body>
+lucky lucky..........
+<input type="button" id="syncBtn" onclick="onSync()" value="同步">
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmq.mapper.UsersMapper">
+
+
+    <resultMap id="UersMap" type="com.cmq.entity.Users">
+        <result property="id" column="ID"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+
+    <!-- 用于select查询公用抽取的列-->
+    <sql id="allFields">
+	    <![CDATA[
+
+				ID,
+				NAME
+
+        ]]>
+	</sql>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="getOne" parameterType="java.lang.Long" resultMap="UersMap">
+        SELECT
+        <include refid="allFields"/>
+        from users
+        where ID=#{id}
+    </select>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="pageQuery"  resultMap="UersMap">
+        SELECT
+        <include refid="allFields"/>
+        from users
+    </select>
+
+
+
+    <!-- 添加数据,请核实表主键  -->
+    <insert id="create" parameterType="com.cmq.entity.Users">
+        INSERT INTO users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                ID,
+            </if>
+
+            <if test="name!=null">
+                name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+
+            <if test="name!=null">
+                #{name},
+            </if>
+        </trim>
+
+    </insert>
+
+
+</mapper>

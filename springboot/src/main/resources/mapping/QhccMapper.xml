@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmq.mapper.QhccMapper">
+
+
+    <resultMap id="QhccMap" type="com.cmq.entity.Qhcc">
+        <result property="createDate" column="create_date"/>
+        <result property="type" column="type"/>
+        <result property="longAmount" column="long_amount"/>
+        <result property="longAmountChange" column="long_amount_change"/>
+        <result property="shortAmount" column="short_amount"/>
+        <result property="shortAmountChange" column="short_amount_change"/>
+        <result property="netAmount" column="net_amount"/>
+        <result property="typeName" column="type_name"/>
+    </resultMap>
+
+
+    <resultMap id="TotalNetAmountMap" type="com.cmq.entity.TotalNetAmount">
+        <result property="createDate" column="create_date"/>
+        <result property="totalNetAmount" column="total_net_amount"/>
+        <result property="longAmount" column="long_amount"/>
+        <result property="shortAmount" column="short_amount"/>
+        <result property="longShortScale" column="long_short_scale"/>
+    </resultMap>
+
+
+    <!-- 用于select查询公用抽取的列-->
+    <sql id="allFields">
+	    <![CDATA[
+        create_date,
+        type,
+        price,
+        long_amount,
+        long_amount_change,
+        short_amount,
+        short_amount_change,
+        net_amount,
+        type_name
+
+        ]]>
+	</sql>
+
+
+    <select id="getOne" resultMap="QhccMap">
+        SELECT
+        <include refid="allFields"/>
+        from qhcc a
+        where create_date=#{createDate} and type=#{type}
+    </select>
+
+
+    <select id="getOneTotalNetAmount" resultMap="TotalNetAmountMap">
+        SELECT
+        *
+        from total_net_amount a
+        where create_date=#{createDate}
+        <if test="type!=null">
+            and type=#{type}
+        </if>
+    </select>
+
+
+    <!--根据主键查询一条数据-->
+    <select id="queryList" resultMap="QhccMap">
+        SELECT
+        <include refid="allFields"/>
+        from qhcc a
+        where 1=1
+        <if test="type!=null">
+            and type=#{type}
+        </if>
+        <if test="createDate!=null">
+            and create_Date=#{createDate}
+        </if>
+        ORDER BY create_Date
+    </select>
+
+
+    <!-- 添加数据,请核实表主键  -->
+    <insert id="create" parameterType="com.cmq.entity.Qhcc">
+        INSERT INTO qhcc
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createDate!=null">
+                create_date,
+            </if>
+            <if test="typeName!=null">
+                TYPE_name,
+            </if>
+            <if test="type!=null">
+                type,
+            </if>
+            <if test="price!=null">
+                price,
+            </if>
+            <if test="longAmount!=null">
+                long_amount,
+            </if>
+            <if test="longAmountChange!=null">
+                long_amount_change,
+            </if>
+            <if test="shortAmount!=null">
+                short_amount,
+            </if>
+            <if test="shortAmountChange!=null">
+                short_amount_change,
+            </if>
+            <if test="netAmount!=null">
+                net_amount,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createDate!=null">
+                #{createDate},
+            </if>
+            <if test="typeName!=null">
+                #{typeName},
+            </if>
+            <if test="type!=null">
+                #{type},
+            </if>
+            <if test="price!=null">
+                #{price},
+            </if>
+            <if test="longAmount!=null">
+                #{longAmount},
+            </if>
+            <if test="longAmountChange!=null">
+                #{longAmountChange},
+            </if>
+            <if test="shortAmount!=null">
+                #{shortAmount},
+            </if>
+            <if test="shortAmountChange!=null">
+                #{shortAmountChange},
+            </if>
+            <if test="netAmount!=null">
+                #{netAmount},
+            </if>
+        </trim>
+
+    </insert>
+
+
+    <!-- 添加数据,请核实表主键  -->
+    <insert id="createTotalNetAmount" parameterType="com.cmq.entity.TotalNetAmount">
+        INSERT INTO total_net_amount
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createDate!=null">
+                create_date,
+            </if>
+            <if test="type!=null">
+                type,
+            </if>
+            <if test="totalNetAmount!=null">
+                total_net_amount,
+            </if>
+            <if test="longShortScale!=null">
+                long_short_scale,
+            </if>
+            <if test="longAmount!=null">
+                long_Amount,
+            </if>
+            <if test="shortAmount!=null">
+                short_Amount,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createDate!=null">
+                #{createDate},
+            </if>
+            <if test="type!=null">
+                #{type},
+            </if>
+            <if test="totalNetAmount!=null">
+                #{totalNetAmount},
+            </if>
+            <if test="longShortScale!=null">
+                #{longShortScale},
+            </if>
+            <if test="longAmount!=null">
+                #{longAmount},
+            </if>
+            <if test="shortAmount!=null">
+                #{shortAmount},
+            </if>
+        </trim>
+
+    </insert>
+
+
+</mapper>
