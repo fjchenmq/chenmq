@@ -18,7 +18,7 @@ import java.util.List;
  * Created by chenmq on 2018/8/10.
  */
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/mock")
 public class MockController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)

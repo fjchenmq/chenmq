@@ -51,7 +51,7 @@ import static com.cmq.utils.SpringUtils.getBean;
  */
 
 @RestController
-@RequestMapping("/springboot")
+@RequestMapping("/test")
 public class TestController extends BaseController<Cust, Long> {
     private static Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired

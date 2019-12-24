@@ -7,7 +7,8 @@
     <groupId>com.cmq</groupId>
     <artifactId>springboot</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <!--<packaging>war</packaging>-->
+    <packaging>jar</packaging>
     <url>http://maven.apache.org</url>
 
     <parent>
@@ -92,11 +93,11 @@
 
 
         <!--- 必须用这个版本 否则会跟spring-boot-starter-web冲突-->
-     <!--   <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>1.3.9.RELEASE</version>
-        </dependency>-->
+        <!--   <dependency>
+               <groupId>org.springframework.kafka</groupId>
+               <artifactId>spring-kafka</artifactId>
+               <version>1.3.9.RELEASE</version>
+           </dependency>-->
 
 
         <!-- 版本 不能随意修改 不然会与spring boot不兼容-->
@@ -205,7 +206,7 @@
     </dependencies>
 
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -250,7 +251,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <!-- 如果是jar包值为true,如果是war包值为false -->
+                    &lt;!&ndash; 如果是jar包值为true,如果是war包值为false &ndash;&gt;
                     <archiveClasses>false</archiveClasses>
                     <archive>
                         <manifest>
@@ -264,5 +265,20 @@
                 </configuration>
             </plugin>
         </plugins>
+    </build>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <!-- 工程主入口 如果只有一个可以不配置-->
+                    <mainClass>com.cmq.TestApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+
     </build>
 </project>

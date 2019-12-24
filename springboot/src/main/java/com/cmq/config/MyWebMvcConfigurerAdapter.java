@@ -43,7 +43,7 @@ public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/sb/**")
-            .addResourceLocations("/springboot/", "classpath:/springboot/");
+            .addResourceLocations("/webjars/springboot/", "classpath:/webjars/springboot/");
     }
 
     @Bean

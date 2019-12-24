@@ -7,7 +7,6 @@ import com.cmq.demo.schema.factory.base.HuaWeiPhoneFactory;
 import com.cmq.demo.schema.factory.base.XiaoMiPhoneFactory;
 import com.cmq.demo.schema.factory.simple.Phone;
 import com.cmq.demo.schema.factory.simple.SimpleFactory;
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 
 /**
  * Created by Administrator on 2019/11/21.
