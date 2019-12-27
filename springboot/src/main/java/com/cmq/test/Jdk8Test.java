@@ -106,6 +106,7 @@ public class Jdk8Test {
         Integer a = 256;
         Integer b =256;
         System.out.println(a==b);
+        System.out.println(a.equals(b));
 
         switch (a){
             case 256:

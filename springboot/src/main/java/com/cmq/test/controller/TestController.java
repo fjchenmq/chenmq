@@ -44,6 +44,7 @@ import static com.cmq.utils.SpringUtils.getBean;
  * http://my:9082/springboot/stock.html
  * http://my:9082/springboot/get
  */
+
 /***
  * @RestController注解，相当于@Controller+@ResponseBody两个注解的结合，
  * 返回json数据不需要在方法前面加@ResponseBody注解了，
@@ -151,7 +152,6 @@ public class TestController extends BaseController<Cust, Long> {
         //写入redis
         redisTemplate.opsForValue().set("cust", cust);
 
-
         emailService.send();
         return cust.getCustName();
     }
@@ -160,7 +160,7 @@ public class TestController extends BaseController<Cust, Long> {
         System.out.println("add method");
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "login", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public String login(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
@@ -172,7 +172,7 @@ public class TestController extends BaseController<Cust, Long> {
         //返回登陆前的URL
         url = (String) request.getSession().getAttribute("beforeUrl");
         if (url == null) {
-            url = "./main.html";
+            url = "/main";
         }
         return url;
     }

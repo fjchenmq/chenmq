@@ -14,4 +14,6 @@
 12.java event
 13.动态代理 基于jdk和cglib
 14.自定义注解，如 DataMasking 用来拦截是否脱敏
-15.springboot 打包方式 启动的时候 直接到目录下 java -jar xxxx.jar就可以启动 不要在tomcat下
+15.springboot 打包方式 启动的时候 直接到目录下 java -jar xxxx.jar就可以启动 不用在tomcat下
+16.spring mvc 配置addResourceHandlers filter viewResolver
+17 spring security   只验证密码？ 用户名错误也无所谓？

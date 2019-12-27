@@ -5,12 +5,12 @@
     <title>lucky</title>
 </head>
 <script src="js/jquery-1.10.2.min.js"></script>
-<script src="util/HttpUtil.js?v=" +Math.random()></script>
+<script src="js/util/HttpUtil.js?v=" +Math.random()></script>
 <script>
 
     function onSync() {
         //alert($("#syncBtn").val())
-        var url ='http://my:9082/springboot/data.do';
+        var url ='http://my:9082/test/data';
          post(url,null,callback);
     }
 

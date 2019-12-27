@@ -12,10 +12,11 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
  * 默认还会扫描 ConditionApplication类所在包路径 也就是com.cmq
@@ -25,9 +26,8 @@ import org.springframework.web.servlet.DispatcherServlet;
  * @SpringBootApplication 扫描 @Configuration
  * excludeName 、 exclude 排除启动某些类
  */
-@SpringBootApplication(scanBasePackages = {"com.cmq.config"},
-    //exclude = {DataSourceAutoConfiguration.class, RedisAutoConfiguration.class},
-    exclude = {SecurityAutoConfiguration.class,ManagementWebSecurityAutoConfiguration.class }
+@SpringBootApplication(scanBasePackages = {"com.cmq.config"}
+    ,exclude = {SecurityAutoConfiguration.class,ManagementWebSecurityAutoConfiguration.class }//EnableWebSecurity 会覆盖此配置
    // excludeName = {"org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration",
      //   "org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration"}
     )
@@ -75,7 +75,7 @@ public class TestApplication extends SpringBootServletInitializer
         /**url增加带.do后缀映射 如http://my:9082/springboot/get.do
          * 但是如果只配*.do 只会拦截带.do的方法 其他的不会走到spring mvc的servlet  像静态资源 也就拦截不到 addResourceHandlers就不会生效
           */
-        registration.addUrlMappings("*.do");
+       /* registration.addUrlMappings("*.do");
         registration.addUrlMappings("*.html");
         registration.addUrlMappings("*.css");
         registration.addUrlMappings("*.js");
@@ -83,14 +83,15 @@ public class TestApplication extends SpringBootServletInitializer
         registration.addUrlMappings("*.gif");
         registration.addUrlMappings("*.ico");
         registration.addUrlMappings("*.jpeg");
-        registration.addUrlMappings("*.jpg");
+        registration.addUrlMappings("*.jpg");*/
         //registration.addUrlMappings("/*");
 
         registration.setLoadOnStartup(1);
         return registration;
     }
 
-    @Bean
+    //用spring security 自己模拟的登陆filter 先屏蔽
+     //@Bean
     public FilterRegistrationBean addFilterRegistration() {
 
         FilterRegistrationBean registration = new FilterRegistrationBean();
@@ -101,5 +102,14 @@ public class TestApplication extends SpringBootServletInitializer
         registration.setOrder(1);
         return registration;
     }
-
+    @Bean
+    public ViewResolver getViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        /**
+         * 如果配置需要与addResourceHandlers里面配置的相对路径保持一致
+         */
+        resolver.setPrefix("/");
+        resolver.setSuffix(".html");
+        return resolver;
+    }
 }

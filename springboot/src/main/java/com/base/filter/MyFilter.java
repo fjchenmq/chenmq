@@ -32,9 +32,12 @@ public class MyFilter extends OncePerRequestFilter {
     private static final Logger log = LoggerFactory.getLogger(MyFilter.class);
 
     static {
-        patterns.add(Pattern.compile(".*login.do"));
-        patterns.add(Pattern.compile(".*login.html"));
+        patterns.add(Pattern.compile(".*login"));
+        patterns.add(Pattern.compile(".*index.html"));
+        patterns.add(Pattern.compile(".*index1.html"));
         patterns.add(Pattern.compile(".*timeout.html"));
+        patterns.add(Pattern.compile(".*index"));
+        patterns.add(Pattern.compile(".*timeout"));
         //|| (\.ico)
         patterns.add(Pattern.compile(".*[(\\.js)||(\\.css)||(\\.png)||(\\.tff) || (\\.ico)]"));
     }
@@ -57,7 +60,8 @@ public class MyFilter extends OncePerRequestFilter {
             if (loginInfo == null && isFilter(requestUrl)) {
                 request.getSession().setAttribute("beforeUrl", requestUrl);
                 //request.getRequestDispatcher("timeout.html").forward(request, response);
-                response.sendRedirect("timeout.html");
+                //response.sendRedirect("index");
+                response.sendRedirect("/timeout");
                 return;
             }
 

@@ -5,19 +5,19 @@
     <title>lucky</title>
 </head>
 <script src="js/jquery-1.10.2.min.js"></script>
-<script src="util/HttpUtil.js"></script>
+<script src="js/util/HttpUtil.js"></script>
 
 <script>
 
     function onSync() {
         //alert($("#syncBtn").val())
-        var url ='http://localhost:8082/springboot/lucky';
+        var url ='http://localhost:8082/test/lucky';
         ajax(url,null,callback);
     }
 
     function onSend() {
         //alert($("#syncBtn").val())
-        var url ='http://localhost:8082/springboot/Topic111/send?message=aaaa';
+        var url ='http://localhost:8082/test/Topic111/send?message=aaaa';
         ajax(url);
     }
 
