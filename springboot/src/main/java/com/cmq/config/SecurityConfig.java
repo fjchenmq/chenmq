@@ -1,9 +1,9 @@
 package com.cmq.config;
 
-import com.cmq.security.CustomAuthenticationEntryPoint;
-import com.cmq.security.CustomAuthenticationFailureHandler;
-import com.cmq.security.CustomAuthenticationSuccessHandler;
-import com.cmq.security.MyPasswordEncoder;
+import com.cmq.base.security.CustomAuthenticationEntryPoint;
+import com.cmq.base.security.CustomAuthenticationFailureHandler;
+import com.cmq.base.security.CustomAuthenticationSuccessHandler;
+import com.cmq.base.security.MyPasswordEncoder;
 import com.cmq.service.impl.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 /**
  * Created by Administrator on 2019/12/25.
  */
@@ -38,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             //指定登录页的路径 ,
             .loginPage("/index")
             //指定自定义form表单请求的路径  如果与界面提交的路径不一致会失败  spring mvc是否有这个方法好像没有影响
-            .loginProcessingUrl("/login").failureUrl("/sb/myerror")
+            .loginProcessingUrl("/login").failureUrl("/myError")
             .defaultSuccessUrl("/success")// successHandler 后面的覆盖前面
             .successHandler(authenticationSuccessHandler)
             .failureHandler(authenticationFailureHandler)

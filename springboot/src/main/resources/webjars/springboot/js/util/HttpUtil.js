@@ -2,7 +2,7 @@
  * Created by Administrator on 2019/11/25.
  */
 post = function (url, data, callback) {
-    ajax(url, data, callback, "post");
+    ajax(url, JSON.stringify(data), callback, "post");
 };
 get = function (url, data, callback) {
     ajax(url, data, callback, "get");

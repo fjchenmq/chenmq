@@ -1,8 +1,10 @@
 package com.cmq.test.controller;
 
+import com.cmq.bean.LoginInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,33 +15,32 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("")
 public class LoginController {
-    @RequestMapping(value = {"index", "/"}, method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = {"index","/"}, method = {RequestMethod.POST, RequestMethod.GET})
     public String index(HttpServletRequest request, HttpServletResponse response) {
         //想成功返回view 需要配置ViewResolver com.cmq.TestApplication.getViewResolver()
-        return "/sb/index";
+        return "sb/index";
     }
 
     @RequestMapping(value = "myLogin", method = {RequestMethod.POST, RequestMethod.GET})
     public String login(HttpServletRequest request, HttpServletResponse response) {
         //想成功返回view 需要配置ViewResolver com.cmq.TestApplication.getViewResolver()
-        return "/sb/main";
+        return "sb/main";
     }
 
     @RequestMapping(value = "timeout", method = {RequestMethod.POST, RequestMethod.GET})
     public String timeout(HttpServletRequest request, HttpServletResponse response) {
         //想成功返回view 需要配置ViewResolver com.cmq.TestApplication.getViewResolver()
-        return "/sb/timeout";
+        return "sb/timeout";
     }
 
     @RequestMapping(value = "success", method = {RequestMethod.POST, RequestMethod.GET})
     public String success(HttpServletRequest request, HttpServletResponse response) {
-        //想成功返回view 需要配置ViewResolver com.cmq.TestApplication.getViewResolver()
-        return "/sb/success";
+        return "sb/success";
     }
 
     @RequestMapping(value = "myError", method = {RequestMethod.POST, RequestMethod.GET})
     public String myError(HttpServletRequest request, HttpServletResponse response) {
         //想成功返回view 需要配置ViewResolver com.cmq.TestApplication.getViewResolver()
-        return "/sb/error";
+        return "sb/error";
     }
 }

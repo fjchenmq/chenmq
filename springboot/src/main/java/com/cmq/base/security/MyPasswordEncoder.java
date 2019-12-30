@@ -1,4 +1,4 @@
-package com.cmq.security;
+package com.cmq.base.security;
 
 /**
  * Created by Administrator on 2019/12/26.

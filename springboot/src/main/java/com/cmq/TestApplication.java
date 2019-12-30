@@ -1,6 +1,7 @@
 package com.cmq;
 
 import com.base.filter.MyFilter;
+import com.cmq.base.CustomExceptionResolver;
 import org.springframework.boot.Banner;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,11 +27,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @SpringBootApplication 扫描 @Configuration
  * excludeName 、 exclude 排除启动某些类
  */
-@SpringBootApplication(scanBasePackages = {"com.cmq.config"}
-    ,exclude = {SecurityAutoConfiguration.class,ManagementWebSecurityAutoConfiguration.class }//EnableWebSecurity 会覆盖此配置
-   // excludeName = {"org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration",
-     //   "org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration"}
-    )
+@SpringBootApplication(scanBasePackages = {"com.cmq.config"}, exclude = {
+    SecurityAutoConfiguration.class,
+    ManagementWebSecurityAutoConfiguration.class}//EnableWebSecurity 会覆盖此配置
+    // excludeName = {"org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration",
+    //   "org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration"}
+)
 @PropertySource(value = {"classpath:config/system.properties", "classpath:config/jdbc.properties"})
 public class TestApplication extends SpringBootServletInitializer
     implements WebServerFactoryCustomizer {
@@ -74,7 +76,7 @@ public class TestApplication extends SpringBootServletInitializer
         registration.getUrlMappings().clear();
         /**url增加带.do后缀映射 如http://my:9082/springboot/get.do
          * 但是如果只配*.do 只会拦截带.do的方法 其他的不会走到spring mvc的servlet  像静态资源 也就拦截不到 addResourceHandlers就不会生效
-          */
+         */
        /* registration.addUrlMappings("*.do");
         registration.addUrlMappings("*.html");
         registration.addUrlMappings("*.css");
@@ -85,13 +87,12 @@ public class TestApplication extends SpringBootServletInitializer
         registration.addUrlMappings("*.jpeg");
         registration.addUrlMappings("*.jpg");*/
         //registration.addUrlMappings("/*");
-
         registration.setLoadOnStartup(1);
         return registration;
     }
 
     //用spring security 自己模拟的登陆filter 先屏蔽
-     //@Bean
+    //@Bean
     public FilterRegistrationBean addFilterRegistration() {
 
         FilterRegistrationBean registration = new FilterRegistrationBean();
@@ -102,6 +103,7 @@ public class TestApplication extends SpringBootServletInitializer
         registration.setOrder(1);
         return registration;
     }
+
     @Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -112,4 +114,6 @@ public class TestApplication extends SpringBootServletInitializer
         resolver.setSuffix(".html");
         return resolver;
     }
+
+
 }

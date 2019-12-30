@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 /**
- * @ComponentScan 如果扫描到有@Component @Controller@Service等这些注解的类，则把这些类注册为bean
+ * @ComponentScan 如果扫描到有@Component @Controller @Repository @Service等这些注解的类，则把这些类注册为bean
  */
 @ConditionalOnProperty(prefix = "sys", value = {"enable"}, havingValue = "true"
     // ,matchIfMissing = true

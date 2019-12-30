@@ -1,7 +1,7 @@
 package com.cmq.test.controller;
 
 import com.base.bean.GridQo;
-import com.base.controller.BaseController;
+import com.cmq.base.BaseController;
 import com.base.properties.PropertiesUtils;
 import com.cmq.bean.Book;
 import com.cmq.bean.LoginInfo;
@@ -38,6 +38,7 @@ import java.util.Map;
 import java.util.ServiceLoader;
 
 import static com.cmq.utils.SpringUtils.getBean;
+import static org.nutz.castor.castor.String2Class.map;
 
 /**
  * Created by chenmq on 2018/8/10.
@@ -184,6 +185,12 @@ public class TestController extends BaseController<Cust, Long> {
         Map<String, Object> map = new HashMap<>();
         map.put("get loginSession", request.getSession().getAttribute("loginSession"));
         return map;
+    }
+
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    @ResponseBody
+    public Object logout(HttpServletRequest request, @RequestBody LoginInfo loginInfo) {
+        return loginInfo;
     }
 
 }

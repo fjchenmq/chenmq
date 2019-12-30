@@ -1,4 +1,4 @@
-package com.base.controller;
+package com.cmq.base;
 
 import com.base.bean.CommonException;
 import com.base.bean.ErrorResult;
@@ -32,7 +32,8 @@ import java.util.Map;
 /**
  */
 @Slf4j
-public class BaseController<T, ID extends Serializable> extends EmptyController {
+public class BaseController<T, ID extends Serializable> extends
+     EmptyController {
     //根据泛型注入
     @Autowired(required = false)
     BaseService<T, ID> baseService;

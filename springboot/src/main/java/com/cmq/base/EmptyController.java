@@ -1,23 +1,28 @@
-package com.base.controller;
+package com.cmq.base;
 
 import com.base.bean.ErrorResult;
-import lombok.extern.slf4j.Slf4j;
+import com.cmq.test.controller.TestController;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 空操作的Controller基类.
+ * 异常统一处理
  */
-@Slf4j
+@RestControllerAdvice(
+    basePackages = "com.ztesoft.bss.oc.web.controller",
+    annotations = {RestController.class, Controller.class})
 public class EmptyController {
-    @Autowired(required = false)
-
+    private static Logger log = LoggerFactory.getLogger(TestController.class);
     /**
      * 未知异常.
      *
