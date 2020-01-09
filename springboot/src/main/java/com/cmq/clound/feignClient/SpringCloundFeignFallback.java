@@ -26,7 +26,7 @@ public class SpringCloundFeignFallback implements SpringCloundFeignClient {
     }
 
     @Override
-    public String exception(  String exception) {
+    public String exception(String exception) {
         return "网络异常请重试";
     }
 }

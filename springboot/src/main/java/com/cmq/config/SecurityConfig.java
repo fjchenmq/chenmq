@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/sb/favicon.ico", "/timeout", "/**/index*.*", "/login", "/myError",
-                "/test/*.do", "/**/*.js").permitAll().anyRequest().authenticated().and().formLogin()
+                /*"/test*//*","/consumer*//*",*/ "/**/*.js").permitAll().anyRequest().authenticated().and().formLogin()
             //指定登录页的路径 ,
             .loginPage("/index")
             //指定自定义form表单请求的路径  如果与界面提交的路径不一致会失败  spring mvc是否有这个方法好像没有影响
@@ -49,7 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 指定未登录入口点 后面的设置覆盖上面loginPage
         http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint);
         //默认都会产生一个hiden标签 里面有安全相关的验证 防止请求伪造 这边我们暂时不需要 可禁用掉
+        //关闭c跨域保护
         http.csrf().disable();
+        super.configure(http);
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

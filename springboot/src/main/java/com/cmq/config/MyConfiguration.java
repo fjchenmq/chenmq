@@ -23,6 +23,9 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ImportResource("classpath:/spring/*.xml")
+/**
+ * @ComponentScan 如果扫描到有@Component @Controller @Repository @Service等这些注解的类，则把这些类注册为bean
+ */
 @ComponentScan(basePackages = {"com.base", "com.cmq"})
 //@EnableEurekaClient只适用于Eureka作为注册中心，@EnableDiscoveryClient 可以是其他注册中心。
 @EnableDiscoveryClient

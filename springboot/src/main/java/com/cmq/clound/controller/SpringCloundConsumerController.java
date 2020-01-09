@@ -34,12 +34,12 @@ public class SpringCloundConsumerController {
         Cust cust = new Cust();
         //RestTemplate方式调用
         str = restTemplate
-            .getForEntity("http://my-spring-clound/provider/get.do?model=RestTemplate",
+            .getForEntity("http://my-spring-clound/provider/get?model=RestTemplate",
                 String.class).getBody();
 
         cust.setCustName("restTemplate");
         ResponseEntity<Cust> responseEntity = restTemplate
-            .postForEntity("http://my-spring-clound/provider/postCust.do", cust, Cust.class);
+            .postForEntity("http://my-spring-clound/provider/postCust", cust, Cust.class);
         System.out.println(responseEntity.getBody().getCustName());
 
         //SpringCloundFeignClient  方式调用

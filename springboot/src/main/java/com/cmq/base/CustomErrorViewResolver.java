@@ -23,6 +23,7 @@ public class CustomErrorViewResolver implements ErrorViewResolver {
         ModelAndView modelAndView = new ModelAndView();
         //跳转到相应的处理页面
         //modelAndView.addObject("errorMsg", message);
+        System.out.println(httpStatus.getReasonPhrase());
         modelAndView.setViewName("sb/error");
         return modelAndView;
     }

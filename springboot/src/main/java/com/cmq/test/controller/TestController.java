@@ -43,7 +43,7 @@ import static org.nutz.castor.castor.String2Class.map;
 /**
  * Created by chenmq on 2018/8/10.
  * http://my:9082/springboot/stock.html
- * http://my:9082/springboot/get
+ * http://my:9082/test/get
  */
 
 /***

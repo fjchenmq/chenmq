@@ -91,7 +91,7 @@ public class TestApplication extends SpringBootServletInitializer
         return registration;
     }
 
-    //用spring security 自己模拟的登陆filter 先屏蔽
+    //用spring security 自己模拟的登陆filter 先注释
     //@Bean
     public FilterRegistrationBean addFilterRegistration() {
 
@@ -114,6 +114,5 @@ public class TestApplication extends SpringBootServletInitializer
         resolver.setSuffix(".html");
         return resolver;
     }
-
 
 }
