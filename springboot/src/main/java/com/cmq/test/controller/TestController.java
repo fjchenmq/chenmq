@@ -6,6 +6,8 @@ import com.base.properties.PropertiesUtils;
 import com.cmq.bean.Book;
 import com.cmq.bean.LoginInfo;
 import com.cmq.bean.Person;
+import com.cmq.demo.json2tree.Json2TreeUtil;
+import com.cmq.demo.json2tree.NodeVo;
 import com.cmq.entity.Cust;
 import com.cmq.mapper.QhccMapper;
 import com.cmq.service.CustService;
@@ -38,7 +40,6 @@ import java.util.Map;
 import java.util.ServiceLoader;
 
 import static com.cmq.utils.SpringUtils.getBean;
-import static org.nutz.castor.castor.String2Class.map;
 
 /**
  * Created by chenmq on 2018/8/10.
@@ -154,6 +155,7 @@ public class TestController extends BaseController<Cust, Long> {
         redisTemplate.opsForValue().set("cust", cust);
 
         emailService.send();
+
         return cust.getCustName();
     }
 
@@ -191,6 +193,12 @@ public class TestController extends BaseController<Cust, Long> {
     @ResponseBody
     public Object logout(HttpServletRequest request, @RequestBody LoginInfo loginInfo) {
         return loginInfo;
+    }
+
+    @RequestMapping(value = "toTree", method = RequestMethod.GET)
+    @ResponseBody
+    public NodeVo toTree(HttpServletRequest request) {
+        return Json2TreeUtil.toTree(Json2TreeUtil.SALES_ORDER);
     }
 
 }

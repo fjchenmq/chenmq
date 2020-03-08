@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
+
 /**
  * Created by Administrator on 2019/11/28.
  */
@@ -27,10 +31,11 @@ public class SpringCloundConsumerController {
     SpringCloundService springCloundService;
 
     @GetMapping(value = "get")
-    public String get() {
+    public String get(HttpServletRequest request, HttpServletResponse response) {
         String str = "I'm consumer";
         System.out.println(str);
-
+        String  token = request.getHeader("Access-Token");
+        Enumeration<String> headers = request.getHeaderNames();
         Cust cust = new Cust();
         //RestTemplate方式调用
         str = restTemplate

@@ -21,10 +21,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("根据用户名查询用户信息"+username);
+        logger.info("根据用户名查询用户信息" + username);
         //查询用户信息
         //xxService.query(username);
-        return new User(username, "123456", AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        User user = new User(username, "123456",
+            AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return user;
+
     }
 
 }

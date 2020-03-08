@@ -1,0 +1,252 @@
+{
+  "contractRoot": {
+    "tcpCont": {
+      "svcCode": "808001000001",
+      "appKey": "CRM-POS",
+      "dstSysId": "OcCenter",
+      "transactionId": "1001000101201602021234567890",
+      "reqTime": "20170210145959001",
+      "sign": "5a748ce35e96db224fb3e9e0f8d6e80ac3f55d23975f606c2fe4e50c0bcf9b44",
+      "version": "1.0"
+    },
+    "svcCont": {
+      "authenticationInfo": {
+        "sysUserId": "10001",
+        "sysUserPostId": "20001"
+      },
+      "requestObject": {
+        "sync": "true",
+        "orderFrom": "CRM-POS",
+        "ordInfo": {
+          "outerOrdId": "20191108011",
+          "mainOrdInstId": "115026841",
+          "ordType": "1",
+          "busiType": "1",
+          "payStatus": "1",
+          "payStatusName": "待支付",
+          "ordAmount": "9000",
+          "orderFrom": "CRM-POS",
+          "provId": "65",
+          "provName": "湖南省",
+          "cityId": "731",
+          "cityName": "长沙市",
+          "areaId": "73101",
+          "areaName": "芙蓉区",
+          "dealSort": "1",
+          "acceptUserId": "731",
+          "acceptUserName": "张三",
+          "orderDesc": "订购199不限量套餐 客户联系电话是18907310001",
+          "ordTypeObjId": "11045",
+          "claimId": "",
+          "operationId": "1110564841",
+          "operationName": "李四",
+          "orderExtAttrInfo": [
+            {
+              "fieldCode": "ext_col",
+              "fieldCodeName": "扩展列",
+              "fieldCodeValue": "11",
+              "fieldCodeValueDesc": "扩展属性11"
+            },
+            {
+              "fieldCode": "ext_col2",
+              "fieldCodeName": "扩展列",
+              "fieldCodeValue": "22",
+              "fieldCodeValueDesc": "扩展属性22"
+            }
+          ],
+          "orderDeliveryInfo":{
+            "receiveAddress":"China,JiangSu,NanJing,JiangNing ZhengFang Road 888 iWaleCloud",
+            "receiveName":"Lucy",
+            "receiveMobileNo":"15800001111",
+            "receiveTime":"2019-10-27 9am-11am",
+            "orderBatchInfo":{
+              "orderBatchId":"123",
+              "outerOrderIdList":[{
+                "outerOrdId":"20181108010"
+              },{
+                "outerOrdId":"20181108011"
+              }]
+            }
+          }
+        },
+        "ordCustInfo": {
+          "custCode": "6042518144",
+          "custName": "老王",
+          "custBrand": "CDMA",
+          "custBrandName": "中国电信",
+          "custLevel": "2",
+          "serviceLevel": "3",
+          "cardType": "10",
+          "cardNo": "440783199902456584",
+          "custEmail": "493659894@qq.com",
+          "contactPhone": "13631405045",
+          "address": "5555",
+          "certAddress": "长洲岛",
+          "lanId": "731",
+          "custPhone": "13631405045",
+          "contactName": "C罗",
+          "contactAddress": "安联球场",
+          "custExtAttr": [
+            {
+              "fieldCode": "ext_col",
+              "fieldCodeName": "扩展列",
+              "fieldCodeValue": "11",
+              "fieldCodeValueDesc": "扩展属性11"
+            },
+            {
+              "fieldCode": "ext_col2",
+              "fieldCodeName": "扩展列",
+              "fieldCodeValue": "22",
+              "fieldCodeValueDesc": "扩展属性22"
+            }
+          ]
+        },
+        "ordAccountInfo": {
+          "accountCode": "1165821",
+          "accountName": "支付宝账户",
+          "accountStatus": "1",
+          "effDate": "2018-08-27",
+          "expDate": "2020-08-29"
+        },
+        "ordPaymentInfo": {
+          "payNo": "166521",
+          "payTypeName": "支付宝",
+          "payType": "1",
+          "payAccount": "88080",
+          "payAmount": "11101",
+          "payStatus": "1",
+          "payTime": "2018-08-27"
+        },
+        "ordAgreementInfo": {
+          "agreementCode": "11232",
+          "agreementName": "订单协议",
+          "agreementType": "10",
+          "agreementTypeName": "协议类型名称",
+          "agreementModelCode": "10",
+          "agreementModelName": "协议模块名称",
+          "agreementFileUrl": "http://"
+        },
+        "ordDevelopmentInfos": [
+          {
+            "roleCode": "10",
+            "roleName": "VIP客户",
+            "developmentCode": "11",
+            "developmentName": "发展人名",
+            "teamCode": "10",
+            "teamName": "团队名称"
+          }
+        ],
+        "ordParticipantsInfos": [
+          {
+            "roleCode": "11",
+            "roleType": "10",
+            "partyId": "65",
+            "partyName": "参与人名称",
+            "partyContactPhone": "13631405045"
+          }
+        ],
+        "ordOfferInfo": [
+          {
+            "offerCode": "60000045",
+            "offerName": "乐享4G",
+            "offerType": "10",
+            "offerTypeName": "订购",
+            "outerOrderItemId": "7311904291469847",
+            "busiType": "1",
+            "lanId": "731",
+            "lanName": "番禺区",
+            "offerStatus": "10",
+            "offerPrice": "350",
+            "offerNum": "10",
+            "isDelivery": "1100",
+            "operType":"1",
+            "oldOuterOrdId":"",
+            "oldOuterOrderItemId": "",
+            "ordOfferResInfo":[{
+              "offerResInstRelId":"45678",
+              "modelId":"100",
+              "modelName":"机顶盒",
+              "quantity":"1",
+              "stockType":"I",
+              "isDelivery":"Y"
+
+            },{
+              "offerResInstRelId":"12345",
+              "modelId":"100",
+              "modelName":"机顶盒",
+              "quantity":"1",
+              "stockType":"I",
+              "isDelivery":"Y"
+            }],
+            "offerExtAttr": [
+              {
+                "fieldCode": "ext_col",
+                "fieldCodeName": "扩展列",
+                "fieldCodeValue": "11",
+                "fieldCodeValueDesc": "扩展属性11"
+              },
+              {
+                "fieldCode": "ext_col2",
+                "fieldCodeName": "扩展列",
+                "fieldCodeValue": "22",
+                "fieldCodeValueDesc": "扩展属性22"
+              }
+            ],
+            "ordOfferProdInfo": [
+              {
+                "offerCode": "60000045",
+                "prodCode": "100005",
+                "prodName": "手机",
+                "prodType": "10",
+                "prodTypeName": "订购",
+                "prodNum": "1",
+                "isDelivery":"Y",
+                "prodInstId":"123276884",
+                "prodExtAttr": [
+                  {
+                    "fieldCode": "GOODS_MODEL",
+                    "fieldCodeName": "Model",
+                    "fieldCodeValue": "204",
+                    "fieldCodeValueDesc": "204"
+                  },
+                  {
+                    "fieldCode": "GOODS_MODEL_NAME",
+                    "fieldCodeName": "Model Name",
+                    "fieldCodeValue": "IPhone 8 Black 256G",
+                    "fieldCodeValueDesc": "IPhone 8 Black 256G"
+                  },{
+                    "fieldCode": "GOODS_QIY",
+                    "fieldCodeName": "Quantity",
+                    "fieldCodeValue": "2",
+                    "fieldCodeValueDesc": "2"
+                  },{
+                    "fieldCode": "GOODS_STOCK_TYPE",
+                    "fieldCodeName": "Stock Type",
+                    "fieldCodeValue": "I",
+                    "fieldCodeValueDesc": "I"
+                  }
+                ]
+              }
+            ],
+            "ordPhoneInfo": {
+              "phoneNum": "",
+              "phoneType": "10",
+              "accessType": "15",
+              "platId": "16548242",
+              "phoneStatus": "10"
+            }
+          }
+        ],
+
+
+        "orderRels": [
+          {
+            "orderItemIdA": "1122334455",
+            "orderItemIdZ": "5544332211",
+            "relType": "10"
+          }
+        ]
+      }
+    }
+  }
+}

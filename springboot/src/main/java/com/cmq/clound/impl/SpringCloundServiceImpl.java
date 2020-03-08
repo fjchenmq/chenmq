@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/springCloundService")
 public class SpringCloundServiceImpl implements SpringCloundService {
+    //可以直接调用 http://my:9082/springCloundService/role?role=1
     @Override
     @RequestMapping(value = "/role")
     public String role(@RequestParam String role) {
