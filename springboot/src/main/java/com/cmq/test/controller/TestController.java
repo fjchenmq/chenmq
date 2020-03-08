@@ -198,6 +198,7 @@ public class TestController extends BaseController<Cust, Long> {
     @RequestMapping(value = "toTree", method = RequestMethod.GET)
     @ResponseBody
     public NodeVo toTree(HttpServletRequest request) {
+        System.out.println(Cust.FieldNames.custName.getNamePath());
         return Json2TreeUtil.toTree(Json2TreeUtil.SALES_ORDER);
     }
 
