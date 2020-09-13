@@ -1,13 +1,16 @@
 package com.cmq.test.controller;
 
 import com.base.bean.GridQo;
-import com.cmq.base.BaseController;
 import com.base.properties.PropertiesUtils;
+import com.cmq.base.BaseController;
 import com.cmq.bean.Book;
 import com.cmq.bean.LoginInfo;
 import com.cmq.bean.Person;
 import com.cmq.demo.json2tree.Json2TreeUtil;
 import com.cmq.demo.json2tree.NodeVo;
+import com.cmq.demo.schema.abs.Audi;
+import com.cmq.demo.schema.abs.BMW;
+import com.cmq.demo.schema.abs.Car;
 import com.cmq.entity.Cust;
 import com.cmq.mapper.QhccMapper;
 import com.cmq.service.CustService;
@@ -15,6 +18,7 @@ import com.cmq.service.EmailService;
 import com.cmq.service.SpiTestService;
 import com.cmq.service.TestService;
 import com.cmq.stock.EasyMoneyService;
+import com.cmq.utils.HttpClientUtil;
 import com.cmq.utils.SpringUtils;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -87,7 +91,6 @@ public class TestController extends BaseController<Cust, Long> {
     public Person lucky(HttpServletRequest request, HttpServletResponse response,
         @RequestBody @Validated Person person) throws Exception {
         testService.getPerson(null);
-
         return person;
     }
 
@@ -183,7 +186,7 @@ public class TestController extends BaseController<Cust, Long> {
     @RequestMapping(value = "sessions", method = RequestMethod.GET)
     @ResponseBody
     public Object sessions(HttpServletRequest request) {
-
+        Object response = HttpClientUtil.doGet("http://localhost:8081/oc/getSessionId");
         Map<String, Object> map = new HashMap<>();
         map.put("get loginSession", request.getSession().getAttribute("loginSession"));
         return map;
@@ -202,6 +205,32 @@ public class TestController extends BaseController<Cust, Long> {
         return Json2TreeUtil.toTree(Json2TreeUtil.SALES_ORDER);
     }
 
+    // http://my:9082/test/loginOm
+    @RequestMapping(value = "loginOm", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object loginOm(HttpServletRequest request) {
+        Object response = HttpClientUtil.doGet(
+            "http://172.21.104.12:8081/omSsoLogged?menuUrl=oc/modules/rule/manage/views/RuleManageView");
+        return response;
+    }
+
+    @Autowired
+    Car  bmw;
+    @Autowired
+    Audi audi;
+//http://my:9082/test/abs
+    @RequestMapping(value = "abs", method = RequestMethod.GET)
+    @ResponseBody
+    public Object abs(HttpServletRequest request) {
+        audi.brand();
+        audi.price();
+        audi.color();
+
+        bmw.brand();
+        bmw.price();
+        bmw.color();
+        return "true";
+    }
 }
 
 //@Controller

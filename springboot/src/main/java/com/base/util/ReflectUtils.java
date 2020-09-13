@@ -1,7 +1,12 @@
 package com.base.util;
 
+import com.base.properties.PropertiesUtils;
+import com.cmq.bean.CertInfo;
 import com.cmq.bean.Person;
+import org.apache.commons.beanutils.PropertyUtils;
+
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -11,7 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * 反射工具类
  * .
  *
- * @author hehuang 2018/9/7
  * @since 1.0.0
  */
 public class ReflectUtils {
@@ -19,6 +23,8 @@ public class ReflectUtils {
     private static final ConcurrentHashMap<String, Class> genericsCache = new ConcurrentHashMap<String, Class>();
 
     private static final ConcurrentHashMap<TypeFieldKey, Field> fieldCache = new ConcurrentHashMap<TypeFieldKey, Field>();
+    public final static  String                                 LEFT       = "{{";
+    public final static  String                                 RIGHT      = "}}";
 
     public static final Field NONE_FIELD = null;
 
@@ -28,7 +34,11 @@ public class ReflectUtils {
      *
      * @param clazz 类型
      * @param index 参数索引，从0开始
-     * @return
+     * @return orderCustCert
+     *
+
+     
+
      */
     public static Class getSuperClassGenericType(Class clazz, int index) {
         String cacheKey = clazz.getName() + "_" + index;
@@ -119,23 +129,88 @@ public class ReflectUtils {
         }
     }
 
-
-    public  static  void invoke(String classPath,String methodName) throws  Exception{
-        Object instance =   Class.forName(classPath).newInstance();
+    public static void invoke(String classPath, String methodName) throws Exception {
+        Object instance = Class.forName(classPath).newInstance();
         Method[] methods = instance.getClass().getDeclaredMethods();
         Method method = null;
-        for(Method m :methods){
-            if(m.getName().equals(methodName)){
+        for (Method m : methods) {
+            if (m.getName().equals(methodName)) {
                 method = m;
             }
         }
-        Class<?>[] parameterTypes =  method.getParameterTypes();
+        Class<?>[] parameterTypes = method.getParameterTypes();
         Person p = new Person();
         p.setName("cmq");
-        method.invoke(instance,p);
+        method.invoke(instance, p);
     }
-    public static void  main(String [] args)throws Exception {
-        ReflectUtils.invoke("com.cmq.test.Print","print");
+
+    /**
+     * @param null
+     * @return
+     * @author chenmq
+     * @version 2020-07-15 16:03:46
+     * @description
+     */
+    private static String parseTemplate(Object obj, String template, String rlt) {
+        String code = "";
+        String val = "";
+        if (template.indexOf(LEFT) != -1 && template.indexOf(RIGHT) != -1) {
+            code = getSubStr(template, LEFT, RIGHT);
+            val = getVal(obj, code).toString();
+            template = template.replace(LEFT + code + RIGHT, "");
+            rlt = rlt.replace(LEFT + code + RIGHT, LEFT + val + RIGHT);
+        }
+        if (template.indexOf(LEFT) != -1 && template.indexOf(RIGHT) != -1) {
+            rlt = parseTemplate(obj, template, rlt);
+        }
+        return rlt;
+    }
+
+    public static String getSubStr(String source, String start, String end) {
+        if (source == null) {
+            return source;
+        }
+        String temp = source.substring(source.indexOf(start) + start.length());
+        temp = temp.substring(0, temp.indexOf(end));
+        return temp.trim();
+    }
+
+    /**
+     * @param null
+     * @return
+     * @author chenmq
+     * @version 2020-07-15 17:22:58
+     * @description
+     */
+    public static Object getVal(Object obj, String path) {
+        Object rlt = null;
+        String code;
+        String[] arrays = path.split("\\.");
+        for (int i = 0; i < arrays.length; i++) {
+            code = arrays[i];
+            try {
+                rlt = PropertyUtils.getProperty(obj, code);
+                obj = rlt;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return rlt;
+    }
+
+    public static void main(String[] args) throws Exception {
+        String temp = "{{name}}{{certInfo.certName}}{{certInfo.certNo}}";
+        Person person = new Person();
+        person.setName("chen");
+        CertInfo certInfo = new CertInfo();
+        certInfo.setCertName("身份证");
+        certInfo.setCertNo("0000");
+        person.setCertInfo(certInfo);
+        String rlt = "";
+        rlt = parseTemplate(person, temp, temp);
+        System.out.println(rlt);
+
     }
 
 }

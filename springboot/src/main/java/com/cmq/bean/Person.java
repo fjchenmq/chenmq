@@ -12,12 +12,11 @@ import javax.validation.constraints.NotNull;
 public class Person {
 
     String name;
-
-
     String age;
 
-    String sex;
-    
+    String   sex;
+    CertInfo certInfo;
+
     public static Person newInstance() {
         Person fragment = new Person();
         return fragment;

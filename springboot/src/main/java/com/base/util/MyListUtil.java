@@ -1,10 +1,8 @@
 package com.base.util;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +11,8 @@ import java.util.Map;
 /**
  * Created by Administrator on 2018/3/5.
  */
-public class ListUtil {
-    static Logger logger     = org.slf4j.LoggerFactory.getLogger(ListUtil.class);
+public class MyListUtil {
+    static Logger logger     = org.slf4j.LoggerFactory.getLogger(MyListUtil.class);
     static String SPLIT_CHAR = ",";
 
     public static boolean isEmpty(List list) {
@@ -51,7 +49,7 @@ public class ListUtil {
      * @return
      */
     public static <T, K> List<K> extractList(List<T> list, String keyField) {
-        List<K> rlt = ListUtil.newList();
+        List<K> rlt = MyListUtil.newList();
         if (!isEmpty(list)) {
             for (T t : list) {
                 try {
@@ -70,11 +68,11 @@ public class ListUtil {
      */
     public static <T> List<Long> excludeRepeat(List<Long> src, List<T> des,
         String compareFieldName) {
-        List<Long> list = ListUtil.newList();
-        if (ListUtil.isEmpty(des)) {
+        List<Long> list = MyListUtil.newList();
+        if (MyListUtil.isEmpty(des)) {
             return src;
         }
-        Map<String, T> map = ListUtil.list2Map(des, compareFieldName);
+        Map<String, T> map = MyListUtil.list2Map(des, compareFieldName);
         for (Long el : src) {
             if (!map.containsKey(el)) {
                 list.add(el);
@@ -93,7 +91,7 @@ public class ListUtil {
      */
     public static <T> String list2String(List<T> list, String fieldName) {
         StringBuilder sb = new StringBuilder("");
-        if (!ListUtil.isEmpty(list)) {
+        if (!MyListUtil.isEmpty(list)) {
 
             if (fieldName == null || fieldName.isEmpty()) {
                 for (int i = 0; i < list.size(); i++) {
@@ -137,8 +135,8 @@ public class ListUtil {
      * @return
      */
     public static <T, K> boolean equals(List<K> src, List<T> des, String compareFieldName) {
-        return ListUtil.list2String(src, compareFieldName)
-            .equals(ListUtil.list2String(des, compareFieldName));
+        return MyListUtil.list2String(src, compareFieldName)
+            .equals(MyListUtil.list2String(des, compareFieldName));
     }
 
     /**

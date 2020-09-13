@@ -1,0 +1,54 @@
+{
+  "request": {
+    "head": {
+      "reqTime": "2020-02-20",
+      "tranId": "00001"
+    },
+    "orders": [
+      {
+        "buyer": "买家1",
+        "orderAttr": [
+          {
+            "attrCode": "size",
+            "attrName": "大小",
+            "attrValue": "36",
+            "orderAttr2": [
+              {
+                "attrCode": "age",
+                "attrName": "年龄",
+                "attrValue": "77"
+              },
+              {
+                "attrCode": "sex",
+                "attrName": "性别",
+                "attrValue": "男"
+              }
+            ]
+          },
+          {
+            "attrCode": "color",
+            "attrName": "颜色",
+            "attrValue": "白色"
+          }
+        ],
+        "orderId": "1"
+      },
+      {
+        "buyer": "买家2",
+        "orderAttr": [
+          {
+            "attrCode": "size",
+            "attrName": "大小",
+            "attrValue": "38"
+          },
+          {
+            "attrCode": "color",
+            "attrName": "颜色",
+            "attrValue": "蓝色"
+          }
+        ],
+        "orderId": "2"
+      }
+    ]
+  }
+}

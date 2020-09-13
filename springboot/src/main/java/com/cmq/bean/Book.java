@@ -15,7 +15,7 @@ public class Book {
      * 加载application.properties中的值
      */
     @Value("${book.name}")
-    String name ;
+    public String name ;
     @Value("${book.id}")
     String id;
 

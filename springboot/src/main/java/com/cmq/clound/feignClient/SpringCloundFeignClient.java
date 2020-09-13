@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "my-spring-clound"/*,fallback = SpringCloundFeignFallback.class*/
 )
 public interface SpringCloundFeignClient {
-    //集合了SpringCloundServiceImpl  SpringCloundServiceImpl 的接口
+    //集合了SpringCloundServiceImpl  SpringCloundProviderController 的接口
     @RequestMapping(value = "/provider/get")
     String get(@RequestParam("model") String model);
 

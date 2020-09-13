@@ -1,26 +1,23 @@
 package com.cmq.config;
 
-import com.base.util.ListUtil;
+import com.base.util.MyListUtil;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.Properties;
 
 /**
  * Created by Administrator on 2019/11/27.
  */
 @Configuration
 public class MybatisConfiguration {
-    static Logger logger = org.slf4j.LoggerFactory.getLogger(ListUtil.class);
+    static Logger logger = org.slf4j.LoggerFactory.getLogger(MyListUtil.class);
     @Autowired
     DataSource dataSource;
 
