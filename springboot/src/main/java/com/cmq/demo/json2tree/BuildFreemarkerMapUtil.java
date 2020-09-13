@@ -333,15 +333,4 @@ public class BuildFreemarkerMapUtil {
         return path;
     }
 
-    /**
-     * @param node
-     * @return
-     */
-    public static String getJsonPath(String nodePath) {
-        return "$." + nodePath;
-    }
-
-    public static void main(String[] args) {
-    }
-
 }
