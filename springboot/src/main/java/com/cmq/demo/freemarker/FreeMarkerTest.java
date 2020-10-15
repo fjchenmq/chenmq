@@ -192,9 +192,7 @@ public class FreeMarkerTest {
             + "\"orders\":[" + "<#if request?exists && request.orders?exists> "
             + "  <#list request.orders as order>{   "
             + "\"orderId\":\"${order.orderId}\",\"buyer\":\"${order.buyer}\" ," + "\"orderAttr\":["
-            + "<#list order.orderAttr as orderAttr>"
-            + " { "
-            +"<#if  orderAttr.orderAttr2?exists> "
+            + "<#list order.orderAttr as orderAttr>" + " { " + "<#if  orderAttr.orderAttr2?exists> "
             + ",\"orderAttr2\":[<#list orderAttr.orderAttr2 as orderAttr2>"
             + "{\"attrValue\":\"${orderAttr2.attrValue}\", \"attrName\":\"${orderAttr2.attrName}\", \"attrCode\":\"${orderAttr2.attrCode}\" "
 
@@ -205,7 +203,6 @@ public class FreeMarkerTest {
             + " </#if> " + "]" + "}";
 
         StringReader stringReader = new StringReader(tplJson);
-        Template template = new Template(null, stringReader, null);
 
         Map map = new HashMap();
         Map request = new HashMap();
@@ -272,18 +269,27 @@ public class FreeMarkerTest {
             orderJson = new BufferedReader(new InputStreamReader(resource.getInputStream())).lines()
                 .collect(Collectors.joining(System.lineSeparator()));
         }
+        StringWriter stringWriter = null;
+        Long t1 = System.currentTimeMillis();
+        int loop = 1000;
+        Template template = new Template(null, stringReader, null);
 
-        Map<String, Object> valueMap = new HashMap();
-        com.alibaba.fastjson.JSONObject result = addUUID(
-            com.alibaba.fastjson.JSONObject.parseObject(orderJson));
-        valueMap = flattening(result);
+        for (int i = 0; i < loop; i++) {
+            Map<String, Object> valueMap = new HashMap();
+            com.alibaba.fastjson.JSONObject result = addUUID(
+                com.alibaba.fastjson.JSONObject.parseObject(orderJson));
+            valueMap = flattening(result);
 
-        Map convertedMap = BuildFreemarkerMapUtil.buildFreemarkerMap(nodeTree, valueMap);
-        System.out.println(nodeTreeJson);
+            Map convertedMap = BuildFreemarkerMapUtil.buildFreemarkerMap(nodeTree, valueMap);
 
-        StringWriter stringWriter = new StringWriter();
-        //template.process(map, stringWriter);
-        template.process(convertedMap, stringWriter);
+           // System.out.println(nodeTreeJson);
+
+            stringWriter = new StringWriter();
+            //template.process(map, stringWriter);
+            template.process(convertedMap, stringWriter);
+        }
+        System.out.println("cost:" + ((System.currentTimeMillis() - t1) / loop));
+
         System.out.println(111111);
         System.out.println(stringWriter.toString());
         System.out.println(111111);

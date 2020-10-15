@@ -183,9 +183,9 @@
         </dependency>
 
 
-        <!-- 引入 集成spring clound -->
-        <!-- 集成spring clound zk做注册中心-->
-        <dependency>
+        <!-- 引入 集成spring clound 工程启动需要zk 先注释-->
+        <!-- 集成spring clound zk做注册中心 -->
+       <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
             <exclusions>

@@ -37,6 +37,7 @@ public class MyCondition {
     @Autowired
     PropertiesUtils propertiesUtils;
 
+
     @ConditionalOnMissingBean(TestService.class)
     @Bean
     public String missBean() {
@@ -56,7 +57,7 @@ public class MyCondition {
         String age = testService.getAge();
         System.err.println("ConditionalOnBean is OK");
         Person person = new Person();
-        person.setName("chenm");
+        person.setName("chenmq");
         return person;
     }
 

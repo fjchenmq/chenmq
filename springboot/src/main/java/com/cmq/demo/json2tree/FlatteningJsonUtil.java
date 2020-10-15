@@ -160,5 +160,6 @@ public class FlatteningJsonUtil {
         System.out.println(result);
         valueMap = flattening(result);
         System.out.println(valueMap);
+        System.out.println(JSONObject.toJSONString("{\"head\":{\"tranId\":\"00001\",\"puuid\":1,\"reqTime\":\"2020-02-20\",\"uuid\":2}}"));
     }
 }

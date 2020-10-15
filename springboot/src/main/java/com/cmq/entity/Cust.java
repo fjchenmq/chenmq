@@ -45,13 +45,17 @@ public class Cust extends BaseEntity<Long> implements Serializable {
     @Getter
     @AllArgsConstructor
     public static enum FieldNames {
-        custName("custName"),
-        statusCd("statusCd");
+        custName("custName"), statusCd("statusCd");
         private String filedName;
         public static final String splitChar = "/";
+
         public String getNamePath() {
             return namePath + splitChar + filedName;
         }
     }
 
+    @Override
+    public int hashCode() {
+        return custId.intValue();
+    }
 }
