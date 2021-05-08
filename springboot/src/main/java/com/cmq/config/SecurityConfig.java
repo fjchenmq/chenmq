@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CustomAuthenticationFailureHandler authenticationFailureHandler;
 
     public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("**"); // 首页不登录
         // 忽略URL
         //web.ignoring().antMatchers("/**/*.js", "/**/*.png");
     }

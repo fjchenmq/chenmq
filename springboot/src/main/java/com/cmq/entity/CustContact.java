@@ -1,9 +1,12 @@
 package com.cmq.entity;
 
+import com.alibaba.fastjson.JSONObject;
+import com.base.bean.BaseEntity;
+
 /**
  * Created by Administrator on 2018/11/29.
  */
-public class CustContact {
+public class CustContact extends BaseEntity<Long> {
     Long contactId;
     Long custId;
 
@@ -30,6 +33,6 @@ public class CustContact {
     public void setContactName(String contactName) {
         this.contactName = contactName;
     }
-
     String contactName;
+
 }

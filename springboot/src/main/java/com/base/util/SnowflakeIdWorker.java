@@ -1,5 +1,10 @@
 package com.base.util;
 
+import com.cmq.demo.freemarker.OrderVo;
+
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -11,6 +16,30 @@ package com.base.util;
  * 12位序列，毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096个ID序号<br>
  * 加起来刚好64位，为一个Long型。<br>
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
+
+ 代码简单，但是在分布式系统使用的时候有一些问题：
+
+ 1. 不同服务器如何使用不同workId，datacenterId？这两个值的取值都为 0~31 之间的整型。
+
+
+
+ 2. 该类设置为单例初始化？
+
+ 解决办法如下：
+
+ 1. 该微服务启动的时候，workId和datacenterId作为参数传入
+
+ 2. 使用Component注解，将SnowflakeIdWorker类设为单例初始化
+
+ 3.值数据库配置 初始化时加锁 随机获取一个？
+
+ 4.另一种思路，就是在程序启动的时候，自动进行计算，选举出一组合适的参数。
+
+ 网上已经有很多方案了，甚至已经封装成了 jar 可以很方便的进行使用。
+
+ 但是基本上都是基于 ZooKeeper 的。
+
+ 我这里实现了一个基于 Redis 的实现方式
  */
 public class SnowflakeIdWorker {
 
@@ -137,10 +166,12 @@ public class SnowflakeIdWorker {
     /** 测试 */
     public static void main(String[] args) {
         SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             long id = idWorker.nextId();
-            System.out.println(Long.toBinaryString(id));
+            //System.out.println(Long.toBinaryString(id));
             System.out.println(id);
         }
+
+
     }
 }

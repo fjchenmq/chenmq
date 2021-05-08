@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.security.config.http.MatcherType.mvc;
+//import static org.springframework.security.config.http.MatcherType.mvc;
 
 /**
  * Created by Administrator on 2019/2/21.

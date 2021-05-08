@@ -42,19 +42,6 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
     }
 
 
-    /**
-     * 子类实现这个方法，status字段各个表的注释不太一样，因此这个字段有自动工具生成放在子类中.
-     *
-     * @return
-     */
-    public abstract String getStatusCd();
-
-    /**
-     * 设置状态值.
-     *
-     * @param statusCd
-     */
-    public abstract void setStatusCd(String statusCd);
 
     /**
      * 状态时间.
@@ -79,6 +66,13 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
     @Getter
     @Transient
     private Long createStaff;
+    /**
+     * 创建人.
+     */
+    @Setter
+    @Getter
+    @Transient
+    private String statusCd;
 
 
     /**
