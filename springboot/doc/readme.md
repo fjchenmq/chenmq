@@ -17,4 +17,4 @@
 15.springboot 打包方式 启动的时候 直接到目录下 java -jar xxxx.jar就可以启动 不用在tomcat下
 16.spring mvc 配置addResourceHandlers filter viewResolver
 17 spring security   只验证密码？ 用户名错误也无所谓？
-18 TODO 加上spring security spring clound 调用 已经登陆了 还是提示没有登陆 跨域问题？ spring cloud feign Security消费端调用401
+18 TODO 加上spring security spring clound 调用 已经登陆了 还是提示没有登陆 跨域问题？ spring cloud feign Security消费端调用401。
